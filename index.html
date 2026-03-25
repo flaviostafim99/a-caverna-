@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Jogo de Escolhas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🕸️ Caverna dos Monstros</h1>
+    <p id="pergunta">Você entra em uma caverna escura cheia de sons estranhos. Para onde vai?</p>
+    
+    <div id="botoes">
+      <button onclick="escolha(1)">Seguir pelo túnel da esquerda</button>
+      <button onclick="escolha(2)">Seguir pelo túnel da direita</button>
+    </div>
+
+    <p id="resultado"></p>
+  </div>
+
+  <script>
+    function escolha(opcao) {
+      const pergunta = document.getElementById("pergunta");
+      const botoes = document.getElementById("botoes");
+      const resultado = document.getElementById("resultado");
+
+      botoes.style.display = "none";
+
+      if (opcao === 1) {
+        pergunta.innerText = "Você encontra um monstro dormindo protegendo um baú. O que faz?";
+        botoes.innerHTML = `
+          <button onclick="final(1)">Tentar roubar o baú</button>
+          <button onclick="final(2)">Atacar o monstro</button>
+        `;
+        botoes.style.display = "block";
+      } else {
+        pergunta.innerText = "Você encontra um lago escuro com olhos brilhando dentro. O que faz?";
+        botoes.innerHTML = `
+          <button onclick="final(3)">Atravessar nadando</button>
+          <button onclick="final(4)">Voltar silenciosamente</button>
+        `;
+        botoes.style.display = "block";
+      }
+    }
+
+    function final(tipo) {
+      const pergunta = document.getElementById("pergunta");
+      const botoes = document.getElementById("botoes");
+      const resultado = document.getElementById("resultado");
+
+      botoes.style.display = "none";
+
+      switch(tipo) {
+        case 1:
+          resultado.innerText = "💰 Final: Você consegue roubar o tesouro sem acordar o monstro!";
+          break;
+        case 2:
+          resultado.innerText = "👹 Final: O monstro acorda e te derrota...";
+          break;
+        case 3:
+          resultado.innerText = "🧟 Final: Criaturas do lago te puxam para o fundo!";
+          break;
+        case 4:
+          resultado.innerText = "🚪 Final: Você encontra uma saída secreta e escapa!";
+          break;
+      }
+
+      pergunta.innerText = "Fim da aventura.";
+    }
+  </script>
+</body>
+</html>
